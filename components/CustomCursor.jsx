@@ -33,7 +33,7 @@ const CustomCursor = () => {
   }, [mouseX, mouseY]);
 
   return (
-    <motion.div className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference flex items-center justify-center hidden md:flex will-change-transform" style={{ x, y, translateX: "-50%", translateY: "-50%" }}>
+    <motion.div className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference flex items-center justify-center hidden lg:flex will-change-transform" style={{ x, y, translateX: "-50%", translateY: "-50%" }}>
       {/* This div is the actual cursor "body" and will handle the scaling and text centering */}
       {/* Changed base size to 80px diameter (40px radius) */}
       <motion.div

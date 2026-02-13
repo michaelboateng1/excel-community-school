@@ -1,27 +1,26 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
-*/
+ */
 
-
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 interface GradientTextProps {
   text: string;
-  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span';
+  as?: "h1" | "h2" | "h3" | "p" | "span";
   className?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
-const GradientText: React.FC<GradientTextProps> = ({ text, as: Component = 'span', className = '' }) => {
+const GradientText: React.FC<GradientTextProps> = ({ text, as: Component = "span", className = "" }) => {
   return (
     <Component className={`relative inline-block font-black tracking-tighter isolate ${className}`}>
       {/* Main Gradient Text */}
       <motion.span
-        className="absolute inset-0 z-10 block bg-gradient-to-r from-white via-[#a8fbd3] via-[#4fb7b3] via-[#637ab9] to-white bg-[length:200%_auto] bg-clip-text text-transparent will-change-[background-position]"
+        className="absolute inset-0 z-10 block bg-gradient-to-r from-white via-[#f9edd9] via-[#bb9657] via-[#b28133] to-white bg-[length:200%_auto] bg-clip-text text-transparent will-change-[background-position]"
         animate={{
-          backgroundPosition: ['0% center', '200% center'],
+          backgroundPosition: ["0% center", "200% center"],
         }}
         transition={{
           duration: 6,
@@ -29,34 +28,34 @@ const GradientText: React.FC<GradientTextProps> = ({ text, as: Component = 'span
           ease: "linear",
         }}
         aria-hidden="true"
-        style={{ 
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden'
+        style={{
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
         }}
       >
         {text}
       </motion.span>
-      
+
       {/* Base layer for solid white fallback */}
-      <span 
+      <span
         className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200 opacity-50"
-        style={{ 
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent' 
+        style={{
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
         }}
       >
         {text}
       </span>
-      
+
       {/* Blur Glow Effect - Static to save performance */}
       <span
         className="absolute inset-0 -z-10 block bg-gradient-to-r from-[#a8fbd3] via-[#4fb7b3] via-[#637ab9] to-[#a8fbd3] bg-[length:200%_auto] bg-clip-text text-transparent blur-xl md:blur-2xl opacity-40"
-        style={{ 
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          transform: 'translateZ(0)' 
+        style={{
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          transform: "translateZ(0)",
         }}
       >
         {text}

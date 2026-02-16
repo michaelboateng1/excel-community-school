@@ -1,10 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Ticket, Globe, Bot, Zap, Sparkles, GraduationCap, Cpu, Radical, MapPin, Menu, X, Calendar, Play, ChevronLeft, ChevronRight } from "lucide-react";
 import FluidBackground from "../components/FluidBackground";
 import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
 import ArtistCard from "../components/ArtistCard";
+
+import CTA from "@/components/CTA";
+
 import { SchooImages } from "../types";
 
 import schoolLogo from "../assets/images/schoolLogo.jpg";
@@ -73,6 +77,15 @@ const ScoolImages: SchooImages[] = [
   },
 ];
 
+const navigations = [
+  { name: "Home", href: "/" },
+  { name: "About us", href: "/about" },
+  { name: "Admissions", href: "#admissions" },
+  { name: "News & Events", href: "#news" },
+  { name: "Gallery", href: "#gallery" },
+  { name: "Contact us", href: "#contact" },
+];
+
 const Home: React.FC = () => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -136,33 +149,33 @@ const Home: React.FC = () => {
       <FluidBackground />
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-8 py-6 mix-blend-difference">
-        {/* <div className="font-heading text-xl md:text-2xl font-bold tracking-tighter text-white cursor-default z-50">Excel Community School</div> */}
+      {/* <nav className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-8 py-6 mix-blend-difference"> */}
+      {/* <div className="font-heading text-xl md:text-2xl font-bold tracking-tighter text-white cursor-default z-50">Excel Community School</div> */}
 
-        <div className="w-10 h-10 md:w-20 md:h-20 relative">
+      {/* <div className="w-10 h-10 md:w-20 md:h-20 relative">
           <img src={schoolLogo} className="w-full h-full object-cover" width="200" height="200" alt="School Logo" />
-        </div>
+        </div> */}
 
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex gap-10 text-sm font-bold tracking-widest uppercase">
-          {["Home", "About us", "Admissions", "News & Events", "Gallery", "Contact us"].map((item) => (
-            <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className="hover:text-[#c1d7ff] transition-colors text-white cursor-pointer bg-transparent border-none" data-hover="true">
-              {item}
-            </button>
+      {/* Desktop Menu */}
+      {/* <div className="hidden lg:flex gap-10 text-sm font-bold tracking-widest uppercase">
+          {navigations.map((nav) => (
+            <Link key={nav.name} to={nav.href} className="hover:text-[#c1d7ff] transition-colors text-white cursor-pointer bg-transparent border-none" data-hover="true">
+              <button>{nav.name}</button>
+            </Link>
           ))}
         </div>
         <button onClick={() => scrollToSection("programs")} className="hidden md:inline-block border border-white px-8 py-3 text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300 text-white cursor-pointer bg-transparent" data-hover="true">
           Apply Now
-        </button>
+        </button> */}
 
-        {/* Mobile Menu Toggle */}
-        <button className="lg:hidden text-white z-50 relative w-10 h-10 flex items-center justify-center" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+      {/* Mobile Menu Toggle */}
+      {/* <button className="lg:hidden text-white z-50 relative w-10 h-10 flex items-center justify-center" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
-      </nav>
+        </button> */}
+      {/* </nav> */}
 
       {/* Mobile Menu Overlay */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="fixed inset-0 z-30 bg-[#31326f]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 lg:hidden">
             {["Home", "About us", "Admissions", "News & Events", "Gallery", "Contact us"].map((item) => (
@@ -181,7 +194,7 @@ const Home: React.FC = () => {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       {/* HERO SECTION */}
       <header className="relative h-[100svh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden px-4">
@@ -374,180 +387,7 @@ const Home: React.FC = () => {
       </footer> */}
 
       {/* CALL TO ACTION SECTION */}
-      <section className="relative z-10 py-24 md:py-40 px-6 overflow-hidden">
-        <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="max-w-4xl mx-auto relative z-10">
-          <div className="bg-black/40 backdrop-blur-2xl border border-white/10 p-8 md:p-16 rounded-[2rem] text-center relative group">
-            {/* Background Glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#c1d7ff]/5 to-[#637ab9]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[2rem]" />
-
-            {/* <motion.div initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8 text-[#c1d7ff] text-xs font-mono uppercase tracking-widest">
-              <Sparkles className="w-4 h-4" /> Newsletter Access
-            </motion.div> */}
-
-            <h2 className="text-4xl md:text-7xl font-heading font-bold mb-6 leading-none uppercase">Ready to Join Our Learning Community?</h2>
-
-            <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-light">Take the first step toward a brighter future for your child. At our school, we nurture talent, build confidence, and inspire excellence both in and out of the classroom.</p>
-
-            <AnimatePresence mode="wait">
-              {/* {!emailSubscribed ? (
-                <motion.form key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.9 }} onSubmit={handleEmailSubmit} className="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
-                  <div className="flex-1 relative">
-                    <input type="email" required placeholder="Enter your frequency (Email)" value={emailInput} onChange={(e) => setEmailInput(e.target.value)} className="w-full bg-white/5 border border-white/20 px-6 py-4 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#ccc] transition-colors text-lg" />
-                  </div>
-                  </motion.form>
-                  ) : (
-              <motion.div key="success" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="p-8 border border-[#c1d7ff]/30 bg-[#c1d7ff]/10 rounded-2xl inline-block">
-                <p className="text-[#c1d7ff] text-2xl font-bold uppercase tracking-widest mb-2">Transmission Received</p>
-                <p className="text-white/60 text-sm font-mono">You are now part of the void.</p>
-              </motion.div>
-                )} */}
-              <div className="flex justify-center items-center">
-                <button type="submit" className="bg-[#ccc] hover:bg-[#c1d7ff] text-black px-10 py-4 rounded-xl font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group/btn" data-hover="true">
-                  Apply <GraduationCap className="w-6 h-6 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-                </button>
-              </div>
-            </AnimatePresence>
-          </div>
-        </motion.div>
-
-        {/* Decorative Floating Blobs for CTA */}
-        <motion.div className="absolute top-1/2 left-0 w-64 h-64 bg-[#c1d7ff]/10 rounded-full blur-[100px]" animate={{ x: [0, 50, 0], y: [0, -50, 0] }} transition={{ duration: 10, repeat: Infinity }} />
-        <motion.div className="absolute bottom-0 right-0 w-96 h-96 bg-[#637ab9]/10 rounded-full blur-[120px]" animate={{ x: [0, -70, 0], y: [0, 50, 0] }} transition={{ duration: 15, repeat: Infinity }} />
-      </section>
-
-      <footer className="relative overflow-hidden bg-linear-to-br from-[#0f2a92] via-[#0b247f] to-[#0f2a92] text-white">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')]"></div>
-        </div>
-        <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl"></div>
-
-        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mb-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <div className="mb-4 flex items-center gap-3">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-lg bg-linear-to-r from-sky-400 to-indigo-500 opacity-50 blur"></div>
-                  <img src={schoolLogo} alt="Spring Side Academy" className="relative h-10 w-10" />
-                </div>
-                <span className="text-lg font-bold">Excel Community School</span>
-              </div>
-              <p className="leading-relaxed text-[#cccccc]">Empowering students to shine through excellence, creativity, and character.</p>
-              <div className="mt-6 flex gap-3">
-                <a aria-label="Facebook" href="https://www.facebook.com/excelcommunityschoolgh/" className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:scale-110 hover:bg-white/20">
-                  <svg className="h-5 w-5 text-[#cccccc] transition-colors group-hover:text-white" fill="white" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                  </svg>
-                </a>
-                <a aria-label="Twitter" href="https://www.tiktok.com/@excelcommunitysch" className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:scale-110 hover:bg-white/20">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-                    <path d="M16.5 2c.45 2.94 2.47 4.96 5.41 5.41v3.02c-1.98-.06-3.8-.65-5.41-1.72v6.16c0 3.52-2.86 6.38-6.38 6.38S3.75 18.39 3.75 14.87c0-3.51 2.86-6.37 6.37-6.37.42 0 .83.05 1.23.14v3.18a2.88 2.88 0 0 0-1.23-.27 3.32 3.32 0 1 0 3.32 3.32V2h3.06z" />
-                  </svg>
-                </a>
-                <a aria-label="YouTube" href="https://www.youtube.com/@ExcelCommunitySchool1" className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:scale-110 hover:bg-white/20">
-                  <svg className="h-5 w-5 text-[#cccccc] transition-colors group-hover:text-white" fill="white" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div>
-              <h3 className="mb-4 text-sm font-bold tracking-wider text-white uppercase">Explore</h3>
-              <ul className="space-y-3">
-                <li>
-                  <a className="group flex items-center gap-2 text-[#cccccc] transition-colors hover:text-white" href="/about">
-                    <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="white">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a className="group flex items-center gap-2 text-[#cccccc] transition-colors hover:text-white" href="/admissions">
-                    <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="white">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                    Admissions
-                  </a>
-                </li>
-                <li>
-                  <a className="group flex items-center gap-2 text-[#cccccc] transition-colors hover:text-white" href="/contact">
-                    <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-4 text-sm font-bold tracking-wider text-white uppercase">Contact</h3>
-              <ul className="space-y-3 text-[#cccccc]">
-                <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="white">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <span>info.excel@gmail.com</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="white">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <span>+233 554 357 897</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="white">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span> AK-045-0058, Kumasi</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-4 text-sm font-bold tracking-wider text-white uppercase">Newsletter</h3>
-              <p className="mb-4 text-sm text-[#cccccc]">Stay updated with our latest news and events.</p>
-              {/* <form onsubmit={e => hundleSubmit(e)} class="relative flex flex-col gap-3">
-					{#if formStatus === "success"}
-						<div bind:this={successMessage} class="absolute inset-0 flex items-center justify-center rounded-lg bg-sky-600/95 backdrop-blur-sm">
-							<div class="flex flex-col items-center justify-center space-y-2 text-center">
-								<svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-								</svg>
-								<p class="text-sm font-semibold text-white">Subscribed!</p>
-								<p class="text-xs text-sky-100">Thank you for joining us</p>
-							</div>
-						</div>
-					{/if}
-					<input
-						type="email"
-						name="newsletter-email"
-						placeholder="Your email"
-						class="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-white transition-all placeholder:text-[#cccccc] focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20 focus:outline-none"
-					/>
-					<button
-						type="submit"
-						class="rounded-lg bg-linear-to-r from-sky-600 to-[#2b52ec] px-4 py-2.5 text-sm font-semibold text-white transition-all hover:scale-105 hover:from-sky-500 hover:to-blue-600"
-						>Subscribe</button
-					>
-				</form> */}
-            </div>
-          </div>
-          <div className="border-t border-white/10 pt-8">
-            <div className="flex flex-col items-center justify-between gap-4 text-sm text-[#cccccc] md:flex-row">
-              <p>© {new Date().getFullYear()} Excel Community School. All rights reserved.</p>
-              <div className="flex gap-6">
-                <a href="#" className="transition-colors hover:text-white">
-                  Privacy Policy
-                </a>
-                <a href="#" className="transition-colors hover:text-white">
-                  Terms of Service
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <CTA />
 
       {/* Artist Detail Modal */}
       <AnimatePresence>

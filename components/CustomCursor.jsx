@@ -54,7 +54,7 @@ const CustomCursor = () => {
           }}
           transition={{ duration: 0.2 }}
         >
-          View
+          Open
         </motion.span>
       </motion.div>
     </motion.div>

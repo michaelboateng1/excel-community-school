@@ -12,7 +12,7 @@ const navigations = [
   { name: "Admissions", href: "/admissions" },
   { name: "News & Events", href: "#news" },
   { name: "Gallery", href: "#gallery" },
-  { name: "Contact us", href: "#contact" },
+  { name: "Contact us", href: "/contact" },
 ];
 
 const NavBar = () => {

@@ -1,133 +1,9 @@
-// export default function NewsAndEvents() {
-// const newsItems = [
-//     {
-//         id: 1,
-//         title: 'Festival Dates Announced',
-//         date: 'March 15, 2024',
-//         description: 'Join us for an unforgettable celebration of music and culture.',
-//         category: 'News',
-//     },
-//     {
-//         id: 2,
-//         title: 'Early Bird Tickets Now Available',
-//         date: 'March 10, 2024',
-//         description: 'Get 20% off with our exclusive early bird discount.',
-//         category: 'Event',
-//     },
-//     {
-//         id: 3,
-//         title: 'Headliner Lineup Revealed',
-//         date: 'March 5, 2024',
-//         description: 'Exciting international and local artists confirmed for 2024.',
-//         category: 'News',
-//     },
-// ];
-
-// const upcomingEvents = [
-//     {
-//         id: 1,
-//         title: 'Pre-Festival Meetup',
-//         date: 'April 20, 2024',
-//         time: '6:00 PM',
-//         location: 'Downtown Square',
-//     },
-//     {
-//         id: 2,
-//         title: 'Lumina Festival Main Event',
-//         date: 'May 18-20, 2024',
-//         time: 'All Day',
-//         location: 'Central Park',
-//     },
-//     {
-//         id: 3,
-//         title: 'Post-Festival Celebration',
-//         date: 'May 25, 2024',
-//         time: '7:00 PM',
-//         location: 'Riverside Venue',
-//     },
-// ];
-
-//     return (
-// {/* <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
-//     {/* Header */}
-//     <div className="bg-black/40 backdrop-blur-sm py-12 px-4">
-//         <div className="max-w-6xl mx-auto">
-//             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-//                 News & Events
-//             </h1>
-//             <p className="text-xl text-gray-200">
-//                 Stay updated with the latest festival news and upcoming events
-//             </p>
-//         </div>
-//     </div>
-
-//     {/* Main Content */}
-//     <div className="max-w-6xl mx-auto px-4 py-16">
-//         {/* News Section */}
-//         <section className="mb-20">
-//             <h2 className="text-4xl font-bold text-white mb-8">Latest News</h2>
-//             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-//                 {newsItems.map((item) => (
-//                     <div
-//                         key={item.id}
-//                         className="bg-white/10 backdrop-blur-md rounded-lg p-6 hover:bg-white/20 transition-all duration-300 border border-white/20"
-//                     >
-//                         <span className="inline-block bg-gradient-to-r from-pink-500 to-purple-500 text-white text-sm font-semibold px-3 py-1 rounded-full mb-3">
-//                             {item.category}
-//                         </span>
-//                         <h3 className="text-2xl font-bold text-white mb-2">
-//                             {item.title}
-//                         </h3>
-//                         <p className="text-gray-300 text-sm mb-4">{item.date}</p>
-//                         <p className="text-gray-200">{item.description}</p>
-//                     </div>
-//                 ))}
-//             </div>
-//         </section>
-
-//         {/* Events Section */}
-//         <section>
-//             <h2 className="text-4xl font-bold text-white mb-8">Upcoming Events</h2>
-//             <div className="space-y-4">
-//                 {upcomingEvents.map((event) => (
-//                     <div
-//                         key={event.id}
-//                         className="bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-md rounded-lg p-6 border border-pink-500/30 hover:border-pink-500/60 transition-all duration-300"
-//                     >
-//                         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-//                             <div>
-//                                 <h3 className="text-2xl font-bold text-white mb-2">
-//                                     {event.title}
-//                                 </h3>
-//                                 <p className="text-gray-300 mb-2">
-//                                     📅 {event.date} • 🕐 {event.time}
-//                                 </p>
-//                                 <p className="text-gray-400">📍 {event.location}</p>
-//                             </div>
-//                             <button className="mt-4 md:mt-0 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold px-6 py-2 rounded-lg hover:shadow-lg hover:shadow-pink-500/50 transition-all duration-300">
-//                                 Learn More
-//                             </button>
-//                         </div>
-//                     </div>
-//                 ))}
-//             </div>
-//         </section>
-//     </div>
-// </div> */}
-//     );
-// }
-
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { CalendarDays, Clock2, LocateFixed } from "lucide-react";
 import BackgroundSlider from "../components/BackgroundSlider";
 import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
-
-import AdmissionsIntro from "../components/Admissions/Intro";
-import AdmissionsTimeline from "../components/Admissions/AdmissionProcess";
-import RequirementsSection from "@/components/Admissions/Requirements";
-import CampusVisitComponent from "@/components/Admissions/Visit";
 
 import assemblyImage from "../assets/images/assembly2.jpg";
 
@@ -189,7 +65,7 @@ const Admission: React.FC = () => {
       date: "March 10, 2024",
       description: "Get 20% off with our exclusive early bird discount.",
       category: "Event",
-      image: studentImage9,
+      image: assemblyImage,
     },
     {
       id: 3,
@@ -197,7 +73,7 @@ const Admission: React.FC = () => {
       date: "March 5, 2024",
       description: "Exciting international and local artists confirmed for 2024.",
       category: "News",
-      image: studentImage9,
+      image: schoolQuiz,
     },
   ];
 
@@ -211,7 +87,7 @@ const Admission: React.FC = () => {
     },
     {
       id: 2,
-      title: "Lumina Festival Main Event",
+      title: "Festival Main Event",
       date: "May 18-20, 2024",
       time: "All Day",
       location: "Central Park",

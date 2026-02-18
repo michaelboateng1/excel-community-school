@@ -148,64 +148,9 @@ const Home: React.FC = () => {
       <CustomCursor />
       <FluidBackground />
 
-      {/* Navigation */}
-      {/* <nav className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-8 py-6 mix-blend-difference"> */}
-      {/* <div className="font-heading text-xl md:text-2xl font-bold tracking-tighter text-white cursor-default z-50">Excel Community School</div> */}
-
-      {/* <div className="w-10 h-10 md:w-20 md:h-20 relative">
-          <img src={schoolLogo} className="w-full h-full object-cover" width="200" height="200" alt="School Logo" />
-        </div> */}
-
-      {/* Desktop Menu */}
-      {/* <div className="hidden lg:flex gap-10 text-sm font-bold tracking-widest uppercase">
-          {navigations.map((nav) => (
-            <Link key={nav.name} to={nav.href} className="hover:text-[#c1d7ff] transition-colors text-white cursor-pointer bg-transparent border-none" data-hover="true">
-              <button>{nav.name}</button>
-            </Link>
-          ))}
-        </div>
-        <button onClick={() => scrollToSection("programs")} className="hidden md:inline-block border border-white px-8 py-3 text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300 text-white cursor-pointer bg-transparent" data-hover="true">
-          Apply Now
-        </button> */}
-
-      {/* Mobile Menu Toggle */}
-      {/* <button className="lg:hidden text-white z-50 relative w-10 h-10 flex items-center justify-center" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button> */}
-      {/* </nav> */}
-
-      {/* Mobile Menu Overlay */}
-      {/* <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="fixed inset-0 z-30 bg-[#31326f]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 lg:hidden">
-            {["Home", "About us", "Admissions", "News & Events", "Gallery", "Contact us"].map((item) => (
-              <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className="text-2xl font-heading font-bold text-white hover:text-[#c1d7ff] transition-colors uppercase bg-transparent border-none">
-                {item}
-              </button>
-            ))}
-            <button onClick={() => scrollToSection("programs")} className="mt-8 border border-white px-10 py-4 text-sm font-bold tracking-widest uppercase bg-white text-black">
-              Apply Now
-            </button>
-
-            <div className="absolute bottom-10 flex gap-6">
-              <a href="https://www.youtube.com/@ExcelCommunitySchool1" className="text-white/50 hover:text-white transition-colors">
-                YouTube
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence> */}
-
       {/* HERO SECTION */}
       <header className="relative h-[100svh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden px-4">
         <motion.div style={{ y, opacity }} className="z-10 text-center flex flex-col items-center w-full max-w-6xl pb-24 md:pb-20">
-          {/* Date / Location */}
-          {/* <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }} className="flex items-center gap-3 md:gap-6 text-xs md:text-base font-mono text-[#c1d7ff] tracking-[0.2em] md:tracking-[0.3em] uppercase mb-4 bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm">
-            <span>Tokyo</span>
-            <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#ccc] rounded-full animate-pulse" />
-            <span>Oct 24-26</span>
-          </motion.div> */}
-
           {/* Main Title */}
           <div className="relative w-full flex justify-center items-center">
             <GradientText text="Excel Community School" as="h1" className="text-[11vw] md:text-[6vw] leading-[0.9] font-black tracking-tighter text-center" />

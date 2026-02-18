@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
-import { createBrowserRouter, RouterProvider, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Admission from "./pages/Admission";
@@ -15,34 +14,48 @@ import Contact from "./pages/Contact";
 
 import Login from "./pages/Dashboard/Login";
 
+// Layout component
+const Layout = () => (
+  <>
+    <NavBar />
+    <Outlet />
+    <Footer />
+  </>
+);
+
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/admissions",
-    element: <Admission />,
-  },
-  {
-    path: "/news",
-    element: <NewsAndEvents />,
-  },
-  {
-    path: "/gallery",
-    element: <Gallery />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/dashboard-login",
-    element: <Login />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/admissions",
+        element: <Admission />,
+      },
+      {
+        path: "/news",
+        element: <NewsAndEvents />,
+      },
+      {
+        path: "/gallery",
+        element: <Gallery />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/dashboard-login",
+        element: <Login />,
+      },
+    ],
   },
 ]);
 
@@ -54,11 +67,6 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <BrowserRouter>
-      <NavBar />
-    </BrowserRouter>
     <RouterProvider router={router} />
-    <Footer />
   </React.StrictMode>,
 );

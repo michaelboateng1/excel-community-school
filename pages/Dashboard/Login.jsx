@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 {
   /* <script>
 	import { Card, Button, Label, Input, Checkbox, Helper } from 'flowbite-svelte';
@@ -111,9 +113,9 @@ const Login = () => {
               {/* <Checkbox class="text-[#0f2a92] focus:ring-[#0f2a92]">
                 <span class="text-sm font-medium text-slate-600">Remember me</span>
               </Checkbox> */}
-              <a href="/forgot-password" class="text-sm font-bold text-[#0f2a92] transition-colors hover:text-[#0b1e6b]">
+              <Link to="/forgot-password" class="text-sm font-bold text-[#0f2a92] transition-colors hover:text-[#0b1e6b]">
                 Forgot password?
-              </a>
+              </Link>
             </div>
 
             <Button type="submit" class="relative h-12 w-full overflow-hidden bg-[#0f2a92] font-bold text-white transition-all hover:bg-[#0b1e6b] hover:shadow-lg active:scale-[0.98]">

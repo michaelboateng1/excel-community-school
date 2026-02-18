@@ -1,4 +1,5 @@
 import schoolLogo from "../assets/images/schoolLogo.jpg";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -21,7 +22,7 @@ const Footer = () => {
             </div>
             <p className="leading-relaxed text-[#cccccc]">Empowering students to shine through excellence, creativity, and character.</p>
             <div className="mt-6 flex gap-3">
-              <a aria-label="Facebook" href="https://www.facebook.com/excelcommunityschoolgh/" className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:scale-110 hover:bg-white/20">
+              <a aria-label="Facebook" href="https://www.facebook.com/excelcommunityschoolgh/" target="_blank" className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:scale-110 hover:bg-white/20">
                 <svg className="h-5 w-5 text-[#cccccc] transition-colors group-hover:text-white" fill="white" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
@@ -31,7 +32,7 @@ const Footer = () => {
                   <path d="M16.5 2c.45 2.94 2.47 4.96 5.41 5.41v3.02c-1.98-.06-3.8-.65-5.41-1.72v6.16c0 3.52-2.86 6.38-6.38 6.38S3.75 18.39 3.75 14.87c0-3.51 2.86-6.37 6.37-6.37.42 0 .83.05 1.23.14v3.18a2.88 2.88 0 0 0-1.23-.27 3.32 3.32 0 1 0 3.32 3.32V2h3.06z" />
                 </svg>
               </a>
-              <a aria-label="YouTube" href="https://www.youtube.com/@ExcelCommunitySchool1" className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:scale-110 hover:bg-white/20">
+              <a aria-label="YouTube" href="https://www.youtube.com/@ExcelCommunitySchool1" target="_blank" className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:scale-110 hover:bg-white/20">
                 <svg className="h-5 w-5 text-[#cccccc] transition-colors group-hover:text-white" fill="white" viewBox="0 0 24 24">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                 </svg>
@@ -42,28 +43,28 @@ const Footer = () => {
             <h3 className="mb-4 text-sm font-bold tracking-wider text-white uppercase">Explore</h3>
             <ul className="space-y-3">
               <li>
-                <a className="group flex items-center gap-2 text-[#cccccc] transition-colors hover:text-white" href="/about">
+                <Link className="group flex items-center gap-2 text-[#cccccc] transition-colors hover:text-white" to="/about">
                   <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="white">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="group flex items-center gap-2 text-[#cccccc] transition-colors hover:text-white" href="/admissions">
+                <Link className="group flex items-center gap-2 text-[#cccccc] transition-colors hover:text-white" to="/admissions">
                   <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="white">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
                   Admissions
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="group flex items-center gap-2 text-[#cccccc] transition-colors hover:text-white" href="/contact">
+                <Link className="group flex items-center gap-2 text-[#cccccc] transition-colors hover:text-white" to="/contact">
                   <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -124,10 +125,10 @@ const Footer = () => {
           <div className="flex flex-col items-center justify-between gap-4 text-sm text-[#cccccc] md:flex-row">
             <p>© {new Date().getFullYear()} Excel Community School. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="transition-colors hover:text-white">
+              <a href="#" target="_blank" className="transition-colors hover:text-white">
                 Privacy Policy
               </a>
-              <a href="#" className="transition-colors hover:text-white">
+              <a href="#" target="_blank" className="transition-colors hover:text-white">
                 Terms of Service
               </a>
             </div>

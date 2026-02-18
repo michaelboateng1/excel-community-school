@@ -31,9 +31,11 @@ const CTA = () => {
                 </motion.div>
                 )} */}
             <div className="flex justify-center items-center">
-              <button type="submit" className="bg-[#ccc] hover:bg-[#c1d7ff] text-black px-10 py-4 rounded-xl font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group/btn" data-hover="true">
-                Apply <GraduationCap className="w-6 h-6 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-              </button>
+              <a href="/admissions">
+                <button type="submit" className="bg-[#ccc] hover:bg-[#c1d7ff] text-black px-10 py-4 rounded-xl font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group/btn" data-hover="true">
+                  Apply <GraduationCap className="w-6 h-6 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                </button>
+              </a>
             </div>
           </AnimatePresence>
         </div>

@@ -10,8 +10,8 @@ const navigations = [
   { name: "Home", href: "/" },
   { name: "About us", href: "/about" },
   { name: "Admissions", href: "/admissions" },
-  { name: "News & Events", href: "#news" },
-  { name: "Gallery", href: "#gallery" },
+  { name: "News & Events", href: "/news" },
+  { name: "Gallery", href: "/gallery" },
   { name: "Contact us", href: "/contact" },
 ];
 
@@ -52,9 +52,11 @@ const NavBar = () => {
           ))}
         </div>
 
-        <button onClick={() => scrollToSection("programs")} className="hidden md:inline-block border border-white px-8 py-3 text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300 text-white cursor-pointer bg-transparent" data-hover="true">
-          Apply Now
-        </button>
+        <a href="/admissions">
+          <button onClick={() => scrollToSection("programs")} className="hidden md:inline-block border border-white px-8 py-3 text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300 text-white cursor-pointer bg-transparent" data-hover="true">
+            Apply Now
+          </button>
+        </a>
 
         {/* Mobile Menu Toggle */}
         <button className="lg:hidden text-white z-50 relative w-10 h-10 flex items-center justify-center" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>

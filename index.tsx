@@ -9,6 +9,8 @@ import { createBrowserRouter, RouterProvider, BrowserRouter } from "react-router
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Admission from "./pages/Admission";
+import NewsAndEvents from "./pages/NewsAndEvents";
+import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 
 import Login from "./pages/Dashboard/Login";
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
   {
     path: "/admissions",
     element: <Admission />,
+  },
+  {
+    path: "/news",
+    element: <NewsAndEvents />,
+  },
+  {
+    path: "/gallery",
+    element: <Gallery />,
   },
   {
     path: "/contact",

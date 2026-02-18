@@ -324,7 +324,7 @@ const Home: React.FC = () => {
                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.2 }} className={`relative rounded-3xl flex flex-col items-start border ${program.accent} backdrop-blur-sm cursor-pointer group overflow-hidden border-white/10`}>
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-                  <div className={`text-5xl md:text-6xl font-bold mb-8 md:mb-10 tracking-tighter ${program.color === "white" ? "text-white" : program.color === "teal" ? "text-[#ccc]" : "text-[#637ab9]"}`}>
+                  <div className={`text-5xl h-40 md:h-60 w-full font-bold mb-8 md:mb-10 tracking-tighter ${program.color === "white" ? "text-white" : program.color === "teal" ? "text-[#ccc]" : "text-[#637ab9]"}`}>
                     <img src={program.image} className="w-full h-full object-cover" alt="" />
                   </div>
                   <div className="flex-1 px-8 pb-8">

@@ -1,0 +1,19 @@
+.ql-toolbar .ql-stroke {
+  stroke: #fff !important;
+}
+
+.ql-toolbar .ql-fill {
+  fill: #fff !important;
+}
+
+.ql-toolbar select {
+  color: #fff;
+}
+
+.ql-toolbar .ql-picker-label {
+  color: #fff !important;
+}
+
+.ql-editor.ql-blank::before {
+  color: #94a3b8 !important;
+}

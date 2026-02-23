@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
+import "@/index.css";
+
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
@@ -12,9 +14,11 @@ import NewsAndEvents from "./pages/NewsAndEvents";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 
+import Dashboard from "./pages/Dashboard/Dashboard";
+
 import Login from "./pages/Dashboard/Login";
 
-// Layout component
+// Layout component for main pages
 const Layout = () => (
   <>
     <NavBar />
@@ -24,6 +28,7 @@ const Layout = () => (
 );
 
 const router = createBrowserRouter([
+  // Main pages with Layout
   {
     element: <Layout />,
     children: [
@@ -51,11 +56,16 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
-      {
-        path: "/dashboard-login",
-        element: <Login />,
-      },
     ],
+  },
+  // Dashboard routes without Layout (no NavBar/Footer)
+  {
+    path: "/dashboard-login",
+    element: <Login />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 

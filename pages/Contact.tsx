@@ -1,15 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { BookOpen, Globe, Zap, Users, Heart, GraduationCap, Menu, X, Calendar, ChevronLeft, ChevronRight, Award, ShieldCheck } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import BackgroundSlider from "../components/BackgroundSlider";
 import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
-import CTA from "../components/CTA";
+
+import TawkChat from "@/components/TawkChat";
 
 import CampusVisitComponent from "../components/Admissions/Visit";
 import ContactForm from "@/components/Contact/ContactForm";
-
-import assemblyImage from "../assets/images/assembly2.jpg";
 
 import studentImage9 from "../assets/images/studentImage9.jpg";
 import studentImage10 from "../assets/images/studentImage10.jpg";
@@ -17,8 +15,6 @@ import studentImage11 from "../assets/images/studentImage11.jpg";
 import studentImage12 from "../assets/images/studentImage12.jpg";
 import studentImage13 from "../assets/images/studentImage13.jpg";
 import schoolQuiz from "../assets/images/smartibeQuiz.jpg";
-
-import Leadership from "@/components/Leadership";
 
 // School Data
 const HIGHLIGHTS = [
@@ -201,6 +197,8 @@ const Contact: React.FC = () => {
       <CampusVisitComponent />
 
       <ContactForm />
+
+      <TawkChat />
     </div>
   );
 };

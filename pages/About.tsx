@@ -6,6 +6,8 @@ import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
 import CTA from "../components/CTA";
 
+import TawkChat from "@/components/TawkChat";
+
 import assemblyImage from "../assets/images/assembly2.jpg";
 
 import studentImage9 from "../assets/images/studentImage9.jpg";
@@ -369,6 +371,8 @@ const App: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <TawkChat />
     </div>
   );
 };

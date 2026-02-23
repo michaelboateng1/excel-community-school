@@ -4,15 +4,11 @@ import { CalendarDays, Clock2, LocateFixed } from "lucide-react";
 import BackgroundSlider from "../components/BackgroundSlider";
 import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
+import { useNews, useEvents } from "@/hooks/useDatabase";
+
+import TawkChat from "@/components/TawkChat";
 
 import assemblyImage from "../assets/images/assembly2.jpg";
-
-import studentImage9 from "../assets/images/studentImage9.jpg";
-import studentImage10 from "../assets/images/studentImage10.jpg";
-import studentImage11 from "../assets/images/studentImage11.jpg";
-import studentImage12 from "../assets/images/studentImage12.jpg";
-import studentImage13 from "../assets/images/studentImage13.jpg";
-import schoolQuiz from "../assets/images/smartibeQuiz.jpg";
 
 import Leadership from "@/components/Leadership";
 import { image } from "framer-motion/client";
@@ -24,16 +20,9 @@ const Admission: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedHighlight, setSelectedHighlight] = useState(null);
 
-  const [applied, setApplied] = useState<boolean>(false);
-  const [applying, setApplying] = useState<boolean>(false);
-
-  const handleApply = () => {
-    setApplying(true);
-    setTimeout(() => {
-      setApplying(false);
-      setApplied(true);
-    }, 2000);
-  };
+  // Load data from Supabase
+  const { news: newsItems, loading: newsLoading } = useNews();
+  const { events: upcomingEvents, loading: eventsLoading } = useEvents();
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
@@ -49,57 +38,6 @@ const Admission: React.FC = () => {
       });
     }
   };
-
-  const newsItems = [
-    {
-      id: 1,
-      title: "Festival Dates Announced",
-      date: "March 15, 2024",
-      description: "Join us for an unforgettable celebration of music and culture.",
-      category: "News",
-      image: studentImage9,
-    },
-    {
-      id: 2,
-      title: "Early Bird Tickets Now Available",
-      date: "March 10, 2024",
-      description: "Get 20% off with our exclusive early bird discount.",
-      category: "Event",
-      image: assemblyImage,
-    },
-    {
-      id: 3,
-      title: "Headliner Lineup Revealed",
-      date: "March 5, 2024",
-      description: "Exciting international and local artists confirmed for 2024.",
-      category: "News",
-      image: schoolQuiz,
-    },
-  ];
-
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: "Pre-Festival Meetup",
-      date: "April 20, 2024",
-      time: "6:00 PM",
-      location: "Downtown Square",
-    },
-    {
-      id: 2,
-      title: "Festival Main Event",
-      date: "May 18-20, 2024",
-      time: "All Day",
-      location: "Central Park",
-    },
-    {
-      id: 3,
-      title: "Post-Festival Celebration",
-      date: "May 25, 2024",
-      time: "7:00 PM",
-      location: "Riverside Venue",
-    },
-  ];
 
   return (
     <div className="relative min-h-screen text-white selection:bg-[#ccc] selection:text-black cursor-none md:cursor-default overflow-x-hidden">
@@ -141,42 +79,62 @@ const Admission: React.FC = () => {
           {/* News Section */}
           <section className="mb-20">
             <h2 className="text-4xl font-bold text-white mb-8">Latest News</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {newsItems.map((item) => (
-                <div key={item.id} className="bg-[#011c4f]/10 backdrop-blur-md rounded-lg p-6 hover:bg-white/20 transition-all duration-300 border border-white/20">
-                  <div className="h-40 md:h-60 bg-black w-full font-bold mb-8 md:mb-10 tracking-tighter text-white">
-                    <img src={item.image} alt={item.title} className="w-full h-full object-cover rounded-lg" />
+            {newsLoading ? (
+              <div className="text-center py-12">
+                <p className="text-gray-300">Loading news articles...</p>
+              </div>
+            ) : newsItems.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-400">No news articles available</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {newsItems.slice(0, 3).map((item) => (
+                  <div key={item.id} className="bg-[#011c4f]/10 backdrop-blur-md rounded-lg p-6 hover:bg-white/20 transition-all duration-300 border border-white/20">
+                    <div className="h-40 md:h-60 bg-black w-full font-bold mb-8 md:mb-10 tracking-tighter text-white">
+                      <img src={item.image_url || assemblyImage} alt={item.title} className="w-full h-full object-cover rounded-lg" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-gray-300 text-sm mb-4">{item.date}</p>
+                    <p className="text-gray-200">{item.excerpt}</p>
+                    <span className="inline-block bg-white text-[#011c4f] text-sm font-semibold px-3 py-1 rounded-full mt-3">View</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-300 text-sm mb-4">{item.date}</p>
-                  <p className="text-gray-200">{item.description}</p>
-                  <span className="inline-block bg-white text-[#011c4f] text-sm font-semibold px-3 py-1 rounded-full mt-3">View</span>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </section>
 
           {/* Events Section */}
           <section>
             <h2 className="text-4xl font-bold text-white mb-8">Upcoming Events</h2>
-            <div className="space-y-4">
-              {upcomingEvents.map((event) => (
-                <div key={event.id} className="bg-[#011c4f] backdrop-blur-md rounded-lg p-6 border border-white/20 transition-all duration-300">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <h3 className="text-2xl font-bold text-white mb-2">{event.title}</h3>
-                      <p className="text-gray-300 mb-2">
-                        <CalendarDays className="inline mr-2 w-4 h-4" /> {event.date} • <Clock2 className="inline mx-2 w-4 h-4" /> {event.time}
-                      </p>
-                      <p className="text-gray-400">
-                        <LocateFixed className="inline mr-2 w-4 h-4" /> {event.location}
-                      </p>
+            {eventsLoading ? (
+              <div className="text-center py-12">
+                <p className="text-gray-300">Loading events...</p>
+              </div>
+            ) : upcomingEvents.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-400">No upcoming events</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {upcomingEvents.map((event) => (
+                  <div key={event.id} className="bg-[#011c4f] backdrop-blur-md rounded-lg p-6 border border-white/20 transition-all duration-300">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                      <div>
+                        <h3 className="text-2xl font-bold text-white mb-2">{event.title}</h3>
+                        <p className="text-gray-300 mb-2">
+                          <CalendarDays className="inline mr-2 w-4 h-4" /> {event.date} • <Clock2 className="inline mx-2 w-4 h-4" /> {event.time}
+                        </p>
+                        <p className="text-gray-400">
+                          <LocateFixed className="inline mr-2 w-4 h-4" /> {event.location}
+                        </p>
+                      </div>
+                      <button className="mt-4 md:mt-0 bg-white text-[#011c4f] font-semibold px-6 py-2 rounded-lg ">Read More</button>
                     </div>
-                    <button className="mt-4 md:mt-0 bg-white text-[#011c4f] font-semibold px-6 py-2 rounded-lg ">Read More</button>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </section>
         </div>
       </div>
@@ -187,6 +145,8 @@ const Admission: React.FC = () => {
 
       <AdmissionsTimeline />
       <CampusVisitComponent /> */}
+
+      <TawkChat />
     </div>
   );
 };

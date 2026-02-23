@@ -7,6 +7,8 @@ import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
 import ArtistCard from "../components/ArtistCard";
 
+import TawkChat from "@/components/TawkChat";
+
 import CTA from "@/components/CTA";
 
 import { SchooImages } from "../types";
@@ -398,6 +400,8 @@ const Home: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <TawkChat />
     </div>
   );
 };

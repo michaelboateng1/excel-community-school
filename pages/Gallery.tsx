@@ -5,6 +5,8 @@ import BackgroundSlider from "../components/BackgroundSlider";
 import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
 
+import TawkChat from "@/components/TawkChat";
+
 import schoolLogo from "../assets/images/schoolLogo.jpg";
 
 import studentImage1 from "../assets/images/studentImage1.jpg";
@@ -323,6 +325,8 @@ const Gallery: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <TawkChat />
     </div>
   );
 };

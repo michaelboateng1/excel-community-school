@@ -5,6 +5,8 @@ import BackgroundSlider from "../components/BackgroundSlider";
 import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
 
+import TawkChat from "@/components/TawkChat";
+
 import AdmissionsIntro from "../components/Admissions/Intro";
 import AdmissionsTimeline from "../components/Admissions/AdmissionProcess";
 import RequirementsSection from "@/components/Admissions/Requirements";
@@ -205,6 +207,8 @@ const Admission: React.FC = () => {
 
       <AdmissionsTimeline />
       <CampusVisitComponent />
+
+      <TawkChat />
     </div>
   );
 };

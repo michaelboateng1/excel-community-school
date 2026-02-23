@@ -1,143 +1,135 @@
-import { Link } from "react-router";
-
-{
-  /* <script>
-	import { Card, Button, Label, Input, Checkbox, Helper } from 'flowbite-svelte';
-	import { EnvelopeSolid, LockSolid, EyeOutline, EyeSlashOutline } from 'flowbite-svelte-icons';
-	import schoolLogo from '$lib/assets/schooLogo.png';
-
-	import {onMount} from "svelte";
-
-	import { supabase } from '$lib/supabaseClient';
-	import { goto } from '$app/navigation';
-
-
-	let email = $state('');
-	let password = $state('');
-	let showPassword = $state(false);
-	let rememberMe = $state(false);
-	
-
-
-
-	function togglePassword() {
-		showPassword = !showPassword;
-	}
-
-	async function signIn(email, password) {
-		const {data, error} = await supabase.auth.signInWithPassword({email, password});
-	}
-
-	async function getUserSession(){
-		supabase.auth.onAuthStateChange((_event, session) => {
-			console.log("Send user to the dash board", session?.user);
-			if(session?.user){
-				goto("/dashboard");
-			}
-		});
-	}
-
-	async function handleSubmit(e) {
-		e.preventDefault();
-
-		signIn(email, password);
-
-		getUserSession();
-
-		email = '';
-		password = '';
-	}
-
-	onMount(() => {
-		getUserSession();
-	})
-</script> */
-}
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle } from "lucide-react";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
+
+    // Validation
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    if (!email.includes("@")) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    // Simulate authentication
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      // Store credentials if remember me is checked
+      if (rememberMe) {
+        localStorage.setItem("dashboardEmail", email);
+      }
+      // Navigate to dashboard
+      navigate("/dashboard");
+    }, 2000);
+  };
+
+  // Load saved email if remember me was used
+  React.useEffect(() => {
+    const savedEmail = localStorage.getItem("dashboardEmail");
+    if (savedEmail) {
+      setEmail(savedEmail);
+      setRememberMe(true);
+    }
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const inputVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: (custom) => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: custom * 0.1, duration: 0.4 },
+    }),
+  };
+
   return (
-    <div class="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-12 dark:bg-slate-900 sm:px-6 lg:px-8">
-      <div class="relative w-full max-w-md">
-        <div class="absolute -top-20 -left-20 h-64 w-64 rounded-full bg-[#0f2a92]/5 blur-3xl lg:h-80 lg:w-80"></div>
-        <div class="absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-sky-500/5 blur-3xl lg:h-80 lg:w-80"></div>
+    <div className="min-h-screen bg-white text-white flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
 
-        <div class="relative z-10 w-full border-none p-10 shadow-2xl">
-          <div class="flex flex-col items-center pb-8">
-            <div class="mb-4 h-20 w-auto overflow-hidden rounded-xl">{/* <img src={schoolLogo} alt="Spring Side Academy" class="h-full w-full object-contain" /> */}</div>
-            <h2 class="text-center text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Welcome Back</h2>
-            <p class="mt-2 text-center text-sm text-slate-500 dark:text-slate-400">Sign in to your dashboard account</p>
-          </div>
+      <motion.div initial="hidden" animate="visible" variants={containerVariants} className="w-full max-w-md">
+        <div className="bg-[#011c4f] backdrop-blur-xl border border-blue-500/20 rounded-2xl p-8 relative z-10">
+          {/* Logo and Title */}
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.4 }} className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-white mb-2">E.C.S Dashboard</h1>
+          </motion.div>
 
-          <form class="space-y-6" method="post">
-            <div class="space-y-4">
-              <div>
-                {/* <Label for="email" class="mb-2 block text-sm font-semibold text-slate-700">
-                  Email Address
-                </Label> */}
-                <input id="email" type="email" placeholder="admin@springside.edu" required class="h-11 border-slate-200 pl-10 bg-slate-50 transition-all focus:border-[#0f2a92] focus:ring-[#0f2a92]/20" />
-                {/* {#snippet left()}
-								<EnvelopeSolid class="h-5 w-5 text-slate-400" />
-							{/snippet} */}
-                {/* </Input> */}
+          {/* Error Message */}
+          {error && (
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg flex items-start gap-3">
+              <AlertCircle size={20} className="text-red-400 flex-shrink-0 mt-0.5" />
+              <span className="text-sm text-red-200">{error}</span>
+            </motion.div>
+          )}
+
+          {/* Login Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Email Input */}
+            <motion.div custom={0} variants={inputVariants} initial="hidden" animate="visible" className="relative">
+              <label className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+              <div className="relative">
+                <Mail size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-gray-500 focus:bg-white/15 transition placeholder-gray-500" />
               </div>
+            </motion.div>
 
-              <div>
-                {/* <Label for="password" class="mb-2 block text-sm font-semibold text-slate-700">
-                  Password
-                </Label> */}
-                <div class="relative">
-                  <input id="password" type="text" placeholder="ykmzwklop" required class="h-11 pl-10 border-slate-200 bg-slate-50 transition-all focus:border-[#0f2a92] focus:ring-[#0f2a92]/20" />
-                  {/* {#snippet left()}
-									<LockSolid class="h-5 w-5 text-slate-400" />
-								{/snippet}
-								{#snippet right()}
-									<button
-										type="button"
-										class="focus:outline-none"
-										onclick={togglePassword}
-										aria-label={showPassword ? 'Hide password' : 'Show password'}
-									>
-										{#if showPassword}
-											<EyeOutline class="h-5 w-5 text-slate-400 hover:text-slate-600" />
-										{:else}
-											<EyeSlashOutline class="h-5 w-5 text-slate-400 hover:text-slate-600" />
-										{/if}
-									</button>
-								{/snippet} */}
-                  {/* </Input> */}
-                </div>
+            {/* Password Input */}
+            <motion.div custom={1} variants={inputVariants} initial="hidden" animate="visible" className="relative">
+              <label className="block text-sm font-medium text-gray-300 mb-2">Password</label>
+              <div className="relative">
+                <Lock size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" className="w-full pl-12 pr-12 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-gray-500 focus:bg-white/15 transition placeholder-gray-500" />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-300 transition">
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
               </div>
-            </div>
+            </motion.div>
 
-            <div class="flex items-center justify-between">
-              {/* <Checkbox class="text-[#0f2a92] focus:ring-[#0f2a92]">
-                <span class="text-sm font-medium text-slate-600">Remember me</span>
-              </Checkbox> */}
-              <Link to="/forgot-password" class="text-sm font-bold text-[#0f2a92] transition-colors hover:text-[#0b1e6b]">
-                Forgot password?
-              </Link>
-            </div>
-
-            <Button type="submit" class="relative h-12 w-full overflow-hidden bg-[#0f2a92] font-bold text-white transition-all hover:bg-[#0b1e6b] hover:shadow-lg active:scale-[0.98]">
-              Sign In
-            </Button>
+            {/* Login Button */}
+            <motion.button custom={3} variants={inputVariants} initial="hidden" animate="visible" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={isLoading} className="w-full py-3 mt-4 bg-white text-[#011c4f] rounded-lg font-semibold hover:shadow-md transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+              {isLoading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  <span>Logging in...</span>
+                </>
+              ) : (
+                <>
+                  <span>Sign in to Dashboard</span>
+                  <ArrowRight size={18} />
+                </>
+              )}
+            </motion.button>
           </form>
-
-          <div class="mt-8 border-t border-slate-100 pt-6 text-center dark:border-slate-800">
-            <p class="text-xs text-slate-400">© {new Date().getFullYear()} Spring Side Academy. All rights reserved.</p>
-          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
-
-{
-  /* <style>
-	:global(body) {
-		background-color: #f8fafc;
-	}
-</style> */
-}
 
 export default Login;

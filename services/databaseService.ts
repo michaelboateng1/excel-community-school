@@ -12,6 +12,7 @@ export interface NewsArticle {
   status: "published" | "draft";
   category: string;
   image_url?: string;
+  user_id?: string;
   created_at: string;
   updated_at: string;
 }
@@ -28,6 +29,7 @@ export interface Event {
   status: "upcoming" | "past" | "cancelled";
   category: string;
   image_url?: string;
+  user_id?: string;
   created_at: string;
   updated_at: string;
 }
@@ -40,6 +42,7 @@ export interface GalleryItem {
   views: number;
   thumbnail: string;
   description?: string;
+  user_id?: string;
   created_at: string;
   updated_at: string;
 }
@@ -88,7 +91,17 @@ export const newsService = {
   // Create news article
   async create(article: Omit<NewsArticle, "id" | "created_at" | "updated_at">) {
     try {
-      const { data, error } = await supabase.from("news").insert([article]).select().single();
+      // Get current user
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      const articleData = {
+        ...article,
+        user_id: user?.id || null,
+      };
+
+      const { data, error } = await supabase.from("news").insert([articleData]).select().single();
 
       if (error) throw error;
       return data;
@@ -101,7 +114,17 @@ export const newsService = {
   // Update news article
   async update(id: string, updates: Partial<NewsArticle>) {
     try {
-      const { data, error } = await supabase.from("news").update(updates).eq("id", id).select().single();
+      // Get current user
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      const updateData = {
+        ...updates,
+        user_id: user?.id || null,
+      };
+
+      const { data, error } = await supabase.from("news").update(updateData).eq("id", id).select().single();
 
       if (error) throw error;
       return data;
@@ -182,7 +205,17 @@ export const eventService = {
   // Create event
   async create(event: Omit<Event, "id" | "created_at" | "updated_at">) {
     try {
-      const { data, error } = await supabase.from("events").insert([event]).select().single();
+      // Get current user
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      const eventData = {
+        ...event,
+        user_id: user?.id || null,
+      };
+
+      const { data, error } = await supabase.from("events").insert([eventData]).select().single();
 
       if (error) throw error;
       return data;
@@ -195,7 +228,17 @@ export const eventService = {
   // Update event
   async update(id: string, updates: Partial<Event>) {
     try {
-      const { data, error } = await supabase.from("events").update(updates).eq("id", id).select().single();
+      // Get current user
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      const updateData = {
+        ...updates,
+        user_id: user?.id || null,
+      };
+
+      const { data, error } = await supabase.from("events").update(updateData).eq("id", id).select().single();
 
       if (error) throw error;
       return data;
@@ -289,7 +332,17 @@ export const galleryService = {
   // Create gallery item
   async create(item: Omit<GalleryItem, "id" | "created_at" | "updated_at">) {
     try {
-      const { data, error } = await supabase.from("gallery").insert([item]).select().single();
+      // Get current user
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      const itemData = {
+        ...item,
+        user_id: user?.id || null,
+      };
+
+      const { data, error } = await supabase.from("gallery").insert([itemData]).select().single();
 
       if (error) throw error;
       return data;
@@ -302,7 +355,17 @@ export const galleryService = {
   // Update gallery item
   async update(id: string, updates: Partial<GalleryItem>) {
     try {
-      const { data, error } = await supabase.from("gallery").update(updates).eq("id", id).select().single();
+      // Get current user
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      const updateData = {
+        ...updates,
+        user_id: user?.id || null,
+      };
+
+      const { data, error } = await supabase.from("gallery").update(updateData).eq("id", id).select().single();
 
       if (error) throw error;
       return data;
@@ -362,10 +425,13 @@ export const galleryService = {
   // Get categories list
   async getCategories(): Promise<string[]> {
     try {
-      const { data, error } = await supabase.from("gallery").select("category").distinct();
+      const { data, error } = await supabase.from("gallery").select("category");
 
       if (error) throw error;
-      return data?.map((item) => item.category) || [];
+
+      // Get unique categories
+      const uniqueCategories = Array.from(new Set(data?.map((item) => item.category) || []));
+      return uniqueCategories;
     } catch (error) {
       console.error("Error fetching categories:", error);
       return [];

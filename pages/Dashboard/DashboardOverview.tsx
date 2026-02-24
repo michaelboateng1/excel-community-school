@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Newspaper, Calendar, Image, TrendingUp, ArrowUpRight, ArrowDownRight } from "lucide-react";
+
+import { useAllNews, useAllEvents, useAllGallery } from "@/hooks/useDatabase";
+import { fetchDashboardStats, DashboardStats } from "@/libs/dashboardStats";
 
 interface StatCard {
   label: string;
@@ -11,29 +14,77 @@ interface StatCard {
 }
 
 const DashboardOverview: React.FC = () => {
-  const [stats] = useState<StatCard[]>([
+  const { news } = useAllNews();
+  const { events } = useAllEvents();
+  const { items: galleryItems } = useAllGallery();
+  const [dashboardStats, setDashboardStats] = useState<DashboardStats | null>(null);
+
+  // Fetch dashboard statistics on component mount and when data changes
+  useEffect(() => {
+    const fetchStats = async () => {
+      const stats = await fetchDashboardStats();
+      // console.log("Dashboard stats fetched:", stats);
+      setDashboardStats(stats);
+    };
+    fetchStats();
+
+    // Optionally refetch every 5 seconds to keep data in sync
+    const interval = setInterval(fetchStats, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Log hook data for debugging
+  useEffect(() => {
+    console.log("Hook data - News:", news.length, "Events:", events.length, "Gallery:", galleryItems.length);
+  }, [news, events, galleryItems]);
+
+  const stats = [
     {
       label: "Total News Articles",
-      value: 24,
+      value: news.length > 0 ? news.length : (dashboardStats?.news?.length ?? 0),
       change: 12,
       icon: "news",
       color: "from-purple-500 to-pink-500",
     },
     {
-      label: "Upcoming Events",
-      value: 8,
+      label: "Total Events",
+      value: events.length > 0 ? events.length : (dashboardStats?.events?.length ?? 0),
       change: -5,
-      icon: "calender",
+      icon: "calendar",
       color: "from-orange-500 to-red-500",
     },
     {
       label: "Gallery Items",
-      value: 156,
+      value: galleryItems.length > 0 ? galleryItems.length : (dashboardStats?.gallery?.length ?? 0),
       change: 23,
       icon: "image",
       color: "from-green-500 to-emerald-500",
     },
-  ]);
+  ];
+
+  // const [stats] = useState<StatCard[]>([
+  //   {
+  //     label: "Total News Articles",
+  //     value: 24,
+  //     change: 12,
+  //     icon: "news",
+  //     color: "from-purple-500 to-pink-500",
+  //   },
+  //   {
+  //     label: "Upcoming Events",
+  //     value: 8,
+  //     change: -5,
+  //     icon: "calender",
+  //     color: "from-orange-500 to-red-500",
+  //   },
+  //   {
+  //     label: "Gallery Items",
+  //     value: 156,
+  //     change: 23,
+  //     icon: "image",
+  //     color: "from-green-500 to-emerald-500",
+  //   },
+  // ]);
 
   const recentActivity = [
     {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle } from "lucide-react";
+import supabase from "../../services/supabaseClient";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -27,17 +28,35 @@ const Login = () => {
       return;
     }
 
-    // Simulate authentication
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      // Store credentials if remember me is checked
-      if (rememberMe) {
-        localStorage.setItem("dashboardEmail", email);
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      console.log("Login response:", { data, error });
+
+      if (error) {
+        setError(error.message || "Login failed. Please check your credentials.");
+        setIsLoading(false);
+        return;
       }
-      // Navigate to dashboard
-      navigate("/dashboard");
-    }, 2000);
+
+      if (data.user) {
+        // Store credentials if remember me is checked
+        if (rememberMe) {
+          localStorage.setItem("dashboardEmail", email);
+        } else {
+          localStorage.removeItem("dashboardEmail");
+        }
+        // Navigate to dashboard on successful login
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
+      setIsLoading(false);
+    }
   };
 
   // Load saved email if remember me was used

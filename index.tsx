@@ -18,6 +18,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 
 import Login from "./pages/Dashboard/Login";
 
+import ProtectedRoute from "./pages/Dashboard/ProtectedRoute";
+
 // Layout component for main pages
 const Layout = () => (
   <>
@@ -65,7 +67,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
   },
 ]);
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Search, Edit2, Trash2, Eye, Calendar, User, Clock, X } from "lucide-react";
+import { Plus, Search, Edit2, Trash2, Eye, Calendar, User, Clock, X, Upload, AlertCircle } from "lucide-react";
 import TextEditor from "@/components/TextEditor";
+import { uploadImageToSupabase } from "@/libs/imageUpload";
 
 interface NewsArticle {
   id: number;
@@ -50,14 +51,43 @@ const NewsManagement: React.FC = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     title: "",
     excerpt: "",
     author: "",
     category: "",
     body: "",
+    imageUrl: "",
   });
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+
+      // Upload immediately
+      uploadImageToSupabase(file, {
+        onUploadStart: () => setUploadingImage(true),
+        onUploadSuccess: (url) => {
+          setFormData((prev) => ({ ...prev, imageUrl: url }));
+          setUploadError(null);
+        },
+        onUploadError: (error) => setUploadError(error),
+        onUploadComplete: () => setUploadingImage(false),
+      });
+    }
+  };
 
   const filteredArticles = articles.filter((article) => article.title.toLowerCase().includes(searchTerm.toLowerCase()) || article.author.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -87,7 +117,10 @@ const NewsManagement: React.FC = () => {
           },
         ]);
       }
-      setFormData({ title: "", excerpt: "", author: "", category: "" });
+      setFormData({ title: "", excerpt: "", author: "", category: "", imageUrl: "" });
+      setImageFile(null);
+      setImagePreview(null);
+      setUploadError(null);
       setShowForm(false);
     }
   };
@@ -98,7 +131,11 @@ const NewsManagement: React.FC = () => {
       excerpt: article.excerpt,
       category: article.category,
       body: article.body,
+      imageUrl: "",
     });
+    setImageFile(null);
+    setImagePreview(null);
+    setUploadError(null);
     setEditingId(article.id);
     setShowForm(true);
   };
@@ -127,7 +164,10 @@ const NewsManagement: React.FC = () => {
           whileTap={{ scale: 0.95 }}
           onClick={() => {
             setEditingId(null);
-            setFormData({ title: "", excerpt: "", author: "", category: "" });
+            setFormData({ title: "", excerpt: "", author: "", category: "", imageUrl: "" });
+            setImageFile(null);
+            setImagePreview(null);
+            setUploadError(null);
             setShowForm(!showForm);
           }}
           className="flex items-center gap-2 px-6 py-3 bg-[#011c4f] rounded-lg font-semibold hover:shadow-lg transition-all"
@@ -150,6 +190,52 @@ const NewsManagement: React.FC = () => {
               </div>
 
               <div className="space-y-4">
+                {/* Image Upload */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">Article Image</label>
+                  <div className="relative">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      disabled={uploadingImage}
+                      className="hidden"
+                      id="image-upload"
+                    />
+                    <label
+                      htmlFor="image-upload"
+                      className="flex flex-col items-center justify-center w-full px-4 py-6 bg-white/10 border-2 border-dashed border-white/30 rounded-lg cursor-pointer hover:border-white/50 transition"
+                    >
+                      {imagePreview ? (
+                        <div className="w-full">
+                          <img src={imagePreview} alt="Preview" className="w-full h-40 object-cover rounded-lg mb-2" />
+                          <p className="text-center text-sm text-gray-300">Click to change image</p>
+                        </div>
+                      ) : (
+                        <div className="text-center">
+                          <Upload size={32} className="mx-auto mb-2 text-gray-400" />
+                          <p className="text-sm text-gray-300">Click to upload image</p>
+                          <p className="text-xs text-gray-500 mt-1">PNG, JPG up to 5MB</p>
+                        </div>
+                      )}
+                    </label>
+                  </div>
+                </div>
+
+                {uploadError && (
+                  <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="p-3 bg-red-500/10 border border-red-500/50 rounded-lg flex items-start gap-2">
+                    <AlertCircle size={18} className="text-red-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-red-400 text-sm">{uploadError}</p>
+                  </motion.div>
+                )}
+
+                {uploadingImage && (
+                  <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="p-3 bg-blue-500/10 border border-blue-500/50 rounded-lg flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+                    <p className="text-blue-400 text-sm">Uploading image...</p>
+                  </motion.div>
+                )}
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">Title</label>
@@ -208,8 +294,16 @@ const NewsManagement: React.FC = () => {
           </div>
         ) : (
           filteredArticles.map((article, index) => (
-            <motion.div key={article.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.05 }} className="p-6 rounded-xl bg-white drop-shadow-md border border-gray-500/20 hover:border-gray-500/40 transition-all group">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <motion.div key={article.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.05 }} className="p-4 rounded-xl bg-white drop-shadow-md border border-gray-500/20 hover:border-gray-500/40 transition-all group overflow-hidden">
+              <div className="flex flex-col sm:flex-row gap-4">
+                {/* Image Thumbnail */}
+                {imagePreview && (
+                  <div className="sm:w-40 sm:h-40 w-full h-32 flex-shrink-0">
+                    <img src={imagePreview} alt={article.title} className="w-full h-full object-cover rounded-lg" />
+                  </div>
+                )}
+
+                {/* Content */}
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-[#011c4f] transition-colors">{article.title}</h3>

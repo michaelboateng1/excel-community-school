@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutDashboard, Calendar, Image, Newspaper, LogOut, Settings, Menu, X, TrendingUp, Eye } from "lucide-react";
 import NewsManagement from "./NewsManagement";
@@ -6,9 +7,13 @@ import EventsManagement from "./EventsManagement";
 import GalleryManagement from "./GalleryManagement";
 import DashboardOverview from "./DashboardOverview";
 
+import supabase from "@/services/supabaseClient";
+
 type ActiveSection = "overview" | "news" | "events" | "gallery";
 
 const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
+
   const [activeSection, setActiveSection] = useState<ActiveSection>("overview");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -52,9 +57,15 @@ const Dashboard: React.FC = () => {
     },
   ];
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     // Implement logout logic here
-    window.location.href = "/";
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Error signing out:", error);
+      return;
+    }
+    // window.location.href = "/dashboard-login";
+    navigate("/dashboard-login");
   };
 
   const renderContent = () => {

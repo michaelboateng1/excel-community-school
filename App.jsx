@@ -5,6 +5,8 @@ import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
 import NewsAndEvents from "./pages/NewsAndEvents";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Login from "./pages/Dashboard/Login";
+import ProtectedRoute from "./pages/Dashboard/ProtectedRoute";
 
 const router = createBrowserRouter([
   // Main Pages - Each has its own layout
@@ -29,10 +31,20 @@ const router = createBrowserRouter([
     element: <NewsAndEvents />,
   },
 
-  // Dashboard - Completely isolated layout
+  // Dashboard Login
+  {
+    path: "/dashboard-login",
+    element: <Login />,
+  },
+
+  // Dashboard - Protected route (requires authentication)
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
   },
 ]);
 

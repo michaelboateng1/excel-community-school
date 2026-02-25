@@ -67,10 +67,10 @@ const NavBar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="fixed inset-0 z-30 bg-[#31326f]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 lg:hidden">
-            {["Home", "About us", "Admissions", "News & Events", "Gallery", "Contact us"].map((item) => (
-              <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className="text-2xl font-heading font-bold text-white hover:text-[#c1d7ff] transition-colors uppercase bg-transparent border-none">
-                {item}
-              </button>
+            {navigations.map((nav) => (
+              <Link key={nav.name} to={nav.href} className="text-2xl font-heading font-bold text-white hover:text-[#c1d7ff] transition-colors uppercase bg-transparent border-none">
+                {nav.name}
+              </Link>
             ))}
             <button onClick={() => scrollToSection("programs")} className="mt-8 border border-white px-10 py-4 text-sm font-bold tracking-widest uppercase bg-white text-black">
               Apply Now

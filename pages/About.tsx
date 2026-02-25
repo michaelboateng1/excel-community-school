@@ -245,7 +245,7 @@ const App: React.FC = () => {
       <section id="campus" className="relative z-10 py-24 md:py-40 bg-black/40 backdrop-blur-sm">
         <div className="max-w-[1600px] mx-auto px-4 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 px-4">
-            <h2 className="text-5xl md:text-6xl font-heading font-bold uppercase leading-none">
+            <h2 className="text-4xl md:text-6xl font-heading font-bold uppercase leading-none">
               Meet Our <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#abc7fc] to-[#6383bf]">Bright Students</span>
             </h2>
@@ -283,7 +283,7 @@ const App: React.FC = () => {
       <section id="leadship" className="relative z-10 py-24 md:py-40 px-6 bg-black/50 border-t border-white/10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24">
-            <h2 className="text-6xl md:text-[10rem] font-heading font-bold opacity-10 text-white leading-none">Leadership</h2>
+            <h2 className="text-4xl md:text-[10rem] font-heading font-bold opacity-10 text-white leading-none">Leadership</h2>
             <p className="text-[#ccdcf9] font-mono uppercase tracking-[0.5em] -mt-8 md:-mt-16 relative z-10 text-sm md:text-xl">Meet Our School Leaders</p>
           </div>
 

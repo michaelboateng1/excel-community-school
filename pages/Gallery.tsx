@@ -236,7 +236,7 @@ const Gallery: React.FC = () => {
       <section className="relative z-10 py-24 md:py-40 px-4 md:px-12">
         <div className="max-w-[1600px] mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="mb-20">
-            <h2 className="text-5xl md:text-6xl font-heading font-bold uppercase leading-none mb-4">
+            <h2 className="text-4xl md:text-6xl font-heading font-bold uppercase leading-none mb-4">
               Discover Our <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#abc7fc] to-[#6383bf]">Unique Experiences</span>
             </h2>
@@ -262,7 +262,7 @@ const Gallery: React.FC = () => {
       <section id="campus" className="relative z-10 py-24 md:py-40 bg-black/40 backdrop-blur-sm">
         <div className="max-w-[1600px] mx-auto px-4 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 px-4">
-            <h2 className="text-5xl md:text-6xl font-heading font-bold uppercase leading-none">
+            <h2 className="text-4xl md:text-6xl font-heading font-bold uppercase leading-none">
               Explore Our <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#abc7fc] to-[#6383bf]">School Moments</span>
             </h2>

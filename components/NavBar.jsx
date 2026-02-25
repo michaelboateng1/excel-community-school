@@ -68,7 +68,7 @@ const NavBar = () => {
         {mobileMenuOpen && (
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="fixed inset-0 z-30 bg-[#31326f]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 lg:hidden">
             {navigations.map((nav) => (
-              <Link key={nav.name} to={nav.href} className="text-2xl font-heading font-bold text-white hover:text-[#c1d7ff] transition-colors uppercase bg-transparent border-none">
+              <Link key={nav.name} to={nav.href} onClick={() => setMobileMenuOpen(false)} className="text-2xl font-heading font-bold text-white hover:text-[#c1d7ff] transition-colors uppercase bg-transparent border-none">
                 {nav.name}
               </Link>
             ))}

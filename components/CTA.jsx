@@ -14,7 +14,7 @@ const CTA = () => {
                 <Sparkles className="w-4 h-4" /> Newsletter Access
             </motion.div> */}
 
-          <h2 className="text-4xl md:text-7xl font-heading font-bold mb-6 leading-none uppercase">Ready to Join Our Learning Community?</h2>
+          <h2 className="text-2xl md:text-7xl font-heading font-bold mb-6 leading-none uppercase">Ready to Join Our Learning Community?</h2>
 
           <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-light">Take the first step toward a brighter future for your child. At our school, we nurture talent, build confidence, and inspire excellence both in and out of the classroom.</p>
 

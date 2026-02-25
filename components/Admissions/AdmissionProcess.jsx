@@ -38,7 +38,7 @@ const TimelineAdmissions = () => {
       <div className="max-w-6xl mx-auto px-6">
         {/* Header Section */}
         <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-4">
+          <h2 className="text-3xl md:text-6xl font-black text-white mb-4">
             The Road to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#abc7fc] to-[#6383bf]">Excellence</span>
           </h2>
           <p className="text-white/80 leading-relaxed font-medium">Clear steps to joining our premier learning community.</p>

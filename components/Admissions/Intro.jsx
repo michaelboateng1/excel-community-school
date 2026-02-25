@@ -15,7 +15,7 @@ const AdmissionsIntroVisual = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           {/* Text Content - Highly Condensed */}
           <div>
-            <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+            <h2 className="text-3xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
               Join the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#abc7fc] to-[#6383bf]">Excellence Journey</span>
             </h2>
             <p className="text-lg text-white/80 leading-relaxed mb-8">Discover why Excell Community School is the perfect foundation for your child's bright future. Explore our vibrant campus, innovative programs, and nurturing community.</p>

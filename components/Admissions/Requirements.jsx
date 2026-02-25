@@ -37,7 +37,7 @@ const RequirementsSection = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-5xl md:text-6xl font-black text-white leading-tight">
+            <h2 className="text-3xl md:text-6xl font-black text-white leading-tight">
               Application <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#abc7fc] to-[#6383bf]">Checklist</span>
             </h2>
           </div>

@@ -257,7 +257,7 @@ const Home: React.FC = () => {
       <section id="programs" className="relative z-10 py-20 md:py-32 px-4 md:px-6 bg-black/30 backdrop-blur-lg">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-20">
-            <h2 className="text-5xl md:text-9xl font-heading font-bold opacity-20 text-white">Curricular</h2>
+            <h2 className="text-4xl md:text-9xl font-heading font-bold opacity-20 text-white">Curricular</h2>
             <p className="text-[#c1d7ff] font-mono uppercase tracking-widest -mt-3 md:-mt-8 relative z-10 text-sm md:text-base">Our other interactive programs</p>
           </div>
 

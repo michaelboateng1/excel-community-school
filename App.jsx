@@ -4,6 +4,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
 import NewsAndEvents from "./pages/NewsAndEvents";
+import AllNews from "./pages/Dashboard/AllNews";
+import NewsDetail from "./pages/NewsDetail";
+import EventDetail from "./pages/EventDetail";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Login from "./pages/Dashboard/Login";
 import ProtectedRoute from "./pages/Dashboard/ProtectedRoute";
@@ -29,6 +32,18 @@ const router = createBrowserRouter([
   {
     path: "/news-and-events",
     element: <NewsAndEvents />,
+  },
+  {
+    path: "/all-news",
+    element: <AllNews />,
+  },
+  {
+    path: "/news/:id",
+    element: <NewsDetail />,
+  },
+  {
+    path: "/event/:id",
+    element: <EventDetail />,
   },
 
   // Dashboard Login

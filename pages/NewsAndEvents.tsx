@@ -5,15 +5,19 @@ import BackgroundSlider from "../components/BackgroundSlider";
 import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
 import { useNews, useEvents } from "@/hooks/useDatabase";
+import { useNavigate } from "react-router-dom";
 
 import TawkChat from "@/components/TawkChat";
 
 import assemblyImage from "../assets/images/assembly2.jpg";
 
 import Leadership from "@/components/Leadership";
-import { image } from "framer-motion/client";
+import { image, use } from "framer-motion/client";
+
+import { newsHighlightData, eventsHighlightData } from "../services/databaseService";
 
 const Admission: React.FC = () => {
+  const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
@@ -21,8 +25,32 @@ const Admission: React.FC = () => {
   const [selectedHighlight, setSelectedHighlight] = useState(null);
 
   // Load data from Supabase
-  const { news: newsItems, loading: newsLoading } = useNews();
-  const { events: upcomingEvents, loading: eventsLoading } = useEvents();
+  // const { news: newsItems, loading: newsLoading } = useNews();
+  // const { events: upcomingEvents, loading: eventsLoading } = useEvents();
+  const [newsLoading, setNewsLoading] = useState(true);
+  const [eventsLoading, setEventsLoading] = useState(true);
+
+  const [newsItems, setNewsItems] = useState([]);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+
+  const loadData = async () => {
+    const [newsData, error, newsLoading] = await newsHighlightData();
+    setNewsItems(newsData);
+    setNewsLoading(newsLoading);
+
+    const [eventsData, eventsError, eventsLoading] = await eventsHighlightData();
+    setUpcomingEvents(eventsData);
+    setEventsLoading(eventsLoading);
+  };
+
+  useEffect(() => {
+    console.log("News data loaded:", newsItems);
+    console.log("Events data loaded:", upcomingEvents);
+  }, [newsItems, upcomingEvents]);
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
@@ -78,7 +106,12 @@ const Admission: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 py-16">
           {/* News Section */}
           <section className="mb-20">
-            <h2 className="text-4xl font-bold text-white mb-8">Latest News</h2>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-4xl font-bold text-white">Latest News</h2>
+              <button onClick={() => navigate("/all-news")} className="bg-white text-[#011c4f] font-semibold px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                View All
+              </button>
+            </div>
             {newsLoading ? (
               <div className="text-center py-12">
                 <p className="text-gray-300">Loading news articles...</p>
@@ -97,7 +130,9 @@ const Admission: React.FC = () => {
                     <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
                     <p className="text-gray-300 text-sm mb-4">{item.date}</p>
                     <p className="text-gray-200">{item.excerpt}</p>
-                    <span className="inline-block bg-white text-[#011c4f] text-sm font-semibold px-3 py-1 rounded-full mt-3">View</span>
+                    <button onClick={() => navigate(`/news/${item.id}`)} className="inline-block bg-white text-[#011c4f] text-sm font-semibold px-3 py-1 rounded-full mt-3 hover:bg-gray-200 transition-colors">
+                      View
+                    </button>
                   </div>
                 ))}
               </div>
@@ -129,7 +164,9 @@ const Admission: React.FC = () => {
                           <LocateFixed className="inline mr-2 w-4 h-4" /> {event.location}
                         </p>
                       </div>
-                      <button className="mt-4 md:mt-0 bg-white text-[#011c4f] font-semibold px-6 py-2 rounded-lg ">Read More</button>
+                      <button onClick={() => navigate(`/event/${event.id}`)} className="mt-4 md:mt-0 bg-white text-[#011c4f] font-semibold px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                        Read More
+                      </button>
                     </div>
                   </div>
                 ))}

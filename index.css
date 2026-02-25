@@ -17,3 +17,147 @@
 .ql-editor.ql-blank::before {
   color: #94a3b8 !important;
 }
+
+/* Quill HTML Display Styles */
+.ql-editor {
+  color: #e5e7eb;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  font-family: inherit;
+}
+
+.ql-editor p {
+  margin-bottom: 1.5rem;
+  color: #d1d5db;
+}
+
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3,
+.ql-editor h4,
+.ql-editor h5,
+.ql-editor h6 {
+  color: #ffffff;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.ql-editor h1 {
+  font-size: 2rem;
+}
+
+.ql-editor h2 {
+  font-size: 1.75rem;
+}
+
+.ql-editor h3 {
+  font-size: 1.5rem;
+}
+
+.ql-editor h4 {
+  font-size: 1.25rem;
+}
+
+.ql-editor h5,
+.ql-editor h6 {
+  font-size: 1.125rem;
+}
+
+.ql-editor ul,
+.ql-editor ol {
+  margin-bottom: 1.5rem;
+  margin-left: 2rem;
+}
+
+.ql-editor li {
+  margin-bottom: 0.5rem;
+  color: #d1d5db;
+}
+
+.ql-editor blockquote {
+  border-left: 4px solid #4375d3;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.ql-editor a {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+.ql-editor a:hover {
+  color: #93c5fd;
+}
+
+.ql-editor strong,
+.ql-editor b {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.ql-editor em,
+.ql-editor i {
+  font-style: italic;
+  color: #d1d5db;
+}
+
+.ql-editor code {
+  background-color: #1f2937;
+  color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.875em;
+}
+
+.ql-editor pre {
+  background-color: #111827;
+  border: 1px solid #374151;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.ql-editor pre code {
+  background-color: transparent;
+  padding: 0;
+  color: #d1d5db;
+}
+
+.ql-editor img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.ql-editor table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  border: 1px solid #374151;
+}
+
+.ql-editor th,
+.ql-editor td {
+  border: 1px solid #374151;
+  padding: 0.75rem;
+  text-align: left;
+  color: #d1d5db;
+}
+
+.ql-editor th {
+  background-color: #1f2937;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.ql-editor hr {
+  border: none;
+  border-top: 1px solid #374151;
+  margin: 2rem 0;
+}

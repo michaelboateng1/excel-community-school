@@ -473,3 +473,50 @@ export const fileService = {
     }
   },
 };
+
+let newsLoading = false;
+let eventsLoading = false;
+
+export const newsHighlightData = async () => {
+  newsLoading = true;
+
+  const { data, error } = await supabase
+    .from("news")
+    .select()
+    .order("created_at", {
+      ascending: false,
+    })
+    .limit(3);
+
+  if (data) newsLoading = false;
+
+  return [data, error, newsLoading];
+};
+
+export const eventsHighlightData = async () => {
+  eventsLoading = true;
+
+  const { data, error } = await supabase
+    .from("events")
+    .select()
+    .order("created_at", {
+      ascending: false,
+    })
+    .limit(3);
+
+  if (data) eventsLoading = false;
+
+  return [data, error, eventsLoading];
+};
+
+export const getAllNews = async () => {
+  newsLoading = true;
+
+  const { data, error } = await supabase.from("news").select().order("created_at", {
+    ascending: false,
+  });
+
+  if (data) newsLoading = false;
+
+  return [data, error, newsLoading];
+};

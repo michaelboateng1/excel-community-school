@@ -20,6 +20,11 @@ import Login from "./pages/Dashboard/Login";
 
 import ProtectedRoute from "./pages/Dashboard/ProtectedRoute";
 
+import AllNews from "./pages/Dashboard/AllNews";
+
+import NewsDetail from "./pages/NewsDetail";
+import EventDetail from "./pages/EventDetail";
+
 // Layout component for main pages
 const Layout = () => (
   <>
@@ -59,6 +64,18 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
     ],
+  },
+  {
+    path: "/all-news",
+    element: <AllNews />,
+  },
+  {
+    path: "/news/:id",
+    element: <NewsDetail />,
+  },
+  {
+    path: "/event/:id",
+    element: <EventDetail />,
   },
   // Dashboard routes without Layout (no NavBar/Footer)
   {

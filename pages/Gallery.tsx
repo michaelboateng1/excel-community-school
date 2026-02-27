@@ -6,6 +6,7 @@ import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
 
 import TawkChat from "@/components/TawkChat";
+import { getAllGallery } from "@/services/databaseService";
 
 import schoolLogo from "../assets/images/schoolLogo.jpg";
 
@@ -194,16 +195,31 @@ const Gallery: React.FC = () => {
     }
   };
 
+  const [galleryData, setGalleryData] = useState([]);
+
+  const fetchGallery = async () => {
+    const [data, error] = await getAllGallery();
+    if (error) {
+      console.error("Error fetching gallery:", error);
+    } else {
+      setGalleryData(data);
+    }
+  };
+
+  useEffect(() => {
+    fetchGallery();
+  }, []);
+
   const navigateHighlight = (direction: "next" | "prev") => {
     if (!selectedHighlight) return;
-    const currentIndex = gallery.findIndex((h) => h.id === selectedHighlight.id);
+    const currentIndex = galleryData.findIndex((h) => h.id === selectedHighlight.id);
     let nextIndex;
     if (direction === "next") {
-      nextIndex = (currentIndex + 1) % gallery.length;
+      nextIndex = (currentIndex + 1) % galleryData.length;
     } else {
-      nextIndex = (currentIndex - 1 + gallery.length) % gallery.length;
+      nextIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
     }
-    setSelectedHighlight(gallery[nextIndex]);
+    setSelectedHighlight(galleryData[nextIndex]);
   };
 
   return (
@@ -270,11 +286,11 @@ const Gallery: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-white/10">
-            {gallery.map((h) => (
+            {galleryData.map((h) => (
               <motion.div key={h.id} onClick={() => setSelectedHighlight(h)} className="group relative h-[450px] md:h-[550px] border border-white/10 overflow-hidden cursor-pointer" whileHover="hover" data-hover="true">
                 <motion.img
-                  src={h.image}
-                  alt={h.name}
+                  src={h.thumbnail}
+                  alt={h.title}
                   className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                   variants={{
                     hover: { scale: 1.1, filter: "brightness(0.6)" },
@@ -298,7 +314,7 @@ const Gallery: React.FC = () => {
 
               <div className="w-full md:w-1/2 h-[40vh] md:h-auto relative">
                 <AnimatePresence mode="wait">
-                  <motion.img key={selectedHighlight.id} src={selectedHighlight.image} alt={selectedHighlight.name} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute w-full h-full object-cover" />
+                  <motion.img key={selectedHighlight.id} src={selectedHighlight.thumbnail} alt={selectedHighlight.title} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute w-full h-full object-cover" />
                 </AnimatePresence>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent md:bg-gradient-to-r" />
               </div>
@@ -309,7 +325,7 @@ const Gallery: React.FC = () => {
                   <span className="font-mono text-sm uppercase tracking-widest">{selectedHighlight.category}</span>
                 </div> */}
 
-                <h3 className="text-5xl md:text-6xl font-heading font-bold uppercase mb-6">{selectedHighlight.name}</h3>
+                <h3 className="text-5xl md:text-6xl font-heading font-bold uppercase mb-6">{selectedHighlight.title}</h3>
                 <p className="text-xl text-white/60 leading-relaxed font-light mb-12">{selectedHighlight.description}</p>
 
                 <div className="flex gap-4">

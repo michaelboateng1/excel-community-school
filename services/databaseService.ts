@@ -520,3 +520,11 @@ export const getAllNews = async () => {
 
   return [data, error, newsLoading];
 };
+
+export const getAllGallery = async () => {
+  const { data, error } = await supabase.from("gallery").select().order("created_at", {
+    ascending: false,
+  });
+
+  return [data, error];
+};

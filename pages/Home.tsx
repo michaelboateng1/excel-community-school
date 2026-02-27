@@ -18,13 +18,13 @@ import schoolLogo from "../assets/images/schoolLogo.jpg";
 import classRoomImage1 from "../assets/images/studentsImage3.jpg";
 import schoolZoo from "../assets/images/studentsImage2.jpg";
 import graduation from "../assets/images/graduation.jpg";
-import studentsDancing from "../assets/images/studentsDance.jpg";
+import classRoomImage2 from "../assets/images/classImage2.jpeg";
 import playGround from "../assets/images/showcase.jpg";
-import studentsImage from "../assets/images/studentsImage.jpg";
+import classRoomImage3 from "../assets/images/classRoomImage4.jpeg";
 
 import SchoolQuiz from "../assets/images/smartibeQuiz.jpg";
 
-import abacusTool from "../assets/images/abacusTool.jpg";
+import abacusImage from "../assets/images/abacusImage.jpeg";
 import computerLab from "../assets/images/computerLab.png";
 import aduinoImage from "../assets/images/aduinoImage.png";
 
@@ -47,19 +47,19 @@ const ScoolImages: SchooImages[] = [
   },
   {
     id: "3",
-    title: "The Campus Mini Zoo",
-    category: "Learning",
+    title: "Interactive Classroom Learning",
+    category: "Academics",
     day: "MON-FRI",
-    image: studentsImage,
-    description: "A unique interactive space where students learn about wildlife and conservation. Our mini zoo features both domestic and non-domestic animals for practical biology lessons.",
+    image: classRoomImage2,
+    description: "A dynamic classroom environment where students engage in interactive lessons, group discussions, and hands-on activities. Our learning spaces are designed to encourage curiosity, collaboration, and critical thinking every day.",
   },
   {
     id: "4",
-    title: "Cultural Dance Performance",
-    category: "Ceremony",
-    day: "SPECIAL EVENT",
-    image: studentsDancing,
-    description: "Students showcase vibrant cultural dances during school ceremonies, celebrating creativity, teamwork, and Ghanaian heritage in a joyful atmosphere.",
+    title: "Focused Classroom Environment",
+    category: "Academics",
+    day: "MON-FRI",
+    image: classRoomImage3,
+    description: "Students attentively engaged in their lessons, listening carefully and participating thoughtfully in class activities. Our classrooms promote concentration, discipline, and a strong commitment to academic excellence every day.",
   },
   {
     id: "5",
@@ -263,7 +263,7 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { name: "Abacus Training", image: abacusTool, color: "white", accent: "bg-white/5" },
+              { name: "Abacus Training", image: abacusImage, color: "white", accent: "bg-white/5" },
               { name: "Coding Training", image: computerLab, color: "teal", accent: "bg-[#ccc]/10 border-[#ccc]/50" },
               { name: "Robotics", image: aduinoImage, color: "periwinkle", accent: "bg-[#637ab9]/10 border-[#637ab9]/50" },
             ].map((program, i) => {

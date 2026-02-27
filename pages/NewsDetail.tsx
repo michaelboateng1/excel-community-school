@@ -7,7 +7,7 @@ import GradientText from "../components/GlitchText";
 import CustomCursor from "../components/CustomCursor";
 import TawkChat from "@/components/TawkChat";
 import assemblyImage from "../assets/images/assembly2.jpg";
-import { newsHighlightData } from "../services/databaseService";
+import { getAllNews } from "../services/databaseService";
 
 const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,7 +21,7 @@ const NewsDetail: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   const loadData = async () => {
-    const [newsData, error, newsLoading] = await newsHighlightData();
+    const [newsData, error, newsLoading] = await getAllNews();
     setAllNews(newsData || []);
 
     if (newsData && id) {

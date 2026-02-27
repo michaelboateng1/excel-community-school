@@ -274,16 +274,16 @@ const NewsManagement: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">Title *</label>
-                    <input type="text" value={formData.title} onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition" placeholder="Article title" />
+                    <input type="text" value={formData.title} onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white/15 transition" placeholder="Article title" />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium mb-2">Category</label>
-                    <input type="text" value={formData.category} onChange={(e) => setFormData((prev) => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition" placeholder="Category" />
+                    <input type="text" value={formData.category} onChange={(e) => setFormData((prev) => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white/15 transition" placeholder="Category" />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                {/*<div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">Author</label>
                     <input type="text" value={formData.author} onChange={(e) => setFormData((prev) => ({ ...prev, author: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition" placeholder="Author name" />
@@ -296,11 +296,11 @@ const NewsManagement: React.FC = () => {
                       <option value="published">Published</option>
                     </select>
                   </div>
-                </div>
+                </div>*/}
 
                 <div>
                   <label className="block text-sm font-medium mb-2">Excerpt *</label>
-                  <input type="text" value={formData.excerpt} onChange={(e) => setFormData((prev) => ({ ...prev, excerpt: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition" placeholder="Article excerpt" />
+                  <input type="text" value={formData.excerpt} onChange={(e) => setFormData((prev) => ({ ...prev, excerpt: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white/15 transition" placeholder="Article excerpt" />
                 </div>
 
                 <div>
@@ -359,7 +359,7 @@ const NewsManagement: React.FC = () => {
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-[#011c4f]">{article.title}</h3>
-                    {article.status && <span className={`px-3 py-1 rounded-full text-xs font-semibold ${article.status === "published" ? "bg-green-500/20 text-green-400 border border-green-500/50" : "bg-yellow-500/20 text-yellow-400 border border-yellow-500/50"}`}>{article.status}</span>}
+                    {/* {article.status && <span className={`px-3 py-1 rounded-full text-xs font-semibold ${article.status === "published" ? "bg-green-500/20 text-green-400 border border-green-500/50" : "bg-yellow-500/20 text-yellow-400 border border-yellow-500/50"}`}>{article.status}</span>} */}
                   </div>
 
                   <p className="text-gray-600 text-sm mb-3">{article.excerpt}</p>
@@ -375,10 +375,10 @@ const NewsManagement: React.FC = () => {
                       <Calendar size={14} />
                       {new Date(article.date).toLocaleDateString()}
                     </div>
-                    <div className="flex items-center gap-1">
+                    {/* <div className="flex items-center gap-1">
                       <Eye size={14} />
                       {article.views} views
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 

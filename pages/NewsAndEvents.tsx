@@ -14,7 +14,7 @@ import assemblyImage from "../assets/images/assembly2.jpg";
 import Leadership from "@/components/Leadership";
 import { image, use } from "framer-motion/client";
 
-import { newsHighlightData, eventsHighlightData } from "../services/databaseService";
+import { newsHighlightData, eventsHighlightData, getAllNews } from "../services/databaseService";
 
 const Admission: React.FC = () => {
   const navigate = useNavigate();

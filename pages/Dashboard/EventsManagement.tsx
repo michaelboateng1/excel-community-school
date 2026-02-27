@@ -294,17 +294,17 @@ const EventsManagement: React.FC = () => {
                   </motion.div>
                 )}
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Title *</label>
-                    <input type="text" value={formData.title} onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition" placeholder="Event title" />
-                  </div>
+                {/* <div className="grid grid-cols-2 gap-4"> */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">Title *</label>
+                  <input type="text" value={formData.title} onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition" placeholder="Event title" />
+                </div>
 
-                  <div>
+                {/* <div>
                     <label className="block text-sm font-medium mb-2">Category</label>
                     <input type="text" value={formData.category} onChange={(e) => setFormData((prev) => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition" placeholder="Category" />
-                  </div>
-                </div>
+                  </div> */}
+                {/* </div> */}
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
@@ -318,17 +318,17 @@ const EventsManagement: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Location</label>
-                    <input type="text" value={formData.location} onChange={(e) => setFormData((prev) => ({ ...prev, location: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition" placeholder="Event location" />
-                  </div>
+                {/* <div className="grid grid-cols-2 gap-4"> */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">Location</label>
+                  <input type="text" value={formData.location} onChange={(e) => setFormData((prev) => ({ ...prev, location: e.target.value }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition" placeholder="Event location" />
+                </div>
 
-                  <div>
+                {/* <div>
                     <label className="block text-sm font-medium mb-2">Capacity</label>
                     <input type="number" value={formData.capacity} onChange={(e) => setFormData((prev) => ({ ...prev, capacity: parseInt(e.target.value) || 0 }))} className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition" placeholder="Max participants" />
-                  </div>
-                </div>
+                  </div> */}
+                {/* </div> */}
 
                 <div>
                   <label className="block text-sm font-medium mb-2">Status</label>
@@ -340,11 +340,17 @@ const EventsManagement: React.FC = () => {
                         status: e.target.value as "upcoming" | "past" | "cancelled",
                       }))
                     }
-                    className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-purple-400 focus:bg-white/15 transition"
+                    className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white/15 transition"
                   >
-                    <option value="upcoming">Upcoming</option>
-                    <option value="past">Past</option>
-                    <option value="cancelled">Cancelled</option>
+                    <option value="upcoming" className="bg-slate-900">
+                      Upcoming
+                    </option>
+                    <option value="past" className="bg-slate-900">
+                      Past
+                    </option>
+                    <option value="cancelled" className="bg-slate-900">
+                      Cancelled
+                    </option>
                   </select>
                 </div>
 
@@ -406,7 +412,7 @@ const EventsManagement: React.FC = () => {
                     <span className={`px-2 py-1 rounded text-xs font-semibold whitespace-nowrap flex-shrink-0 ${event.status === "upcoming" ? "bg-blue-100 text-blue-700" : event.status === "past" ? "bg-gray-100 text-gray-700" : "bg-red-100 text-red-700"}`}>{event.status}</span>
                   </div>
 
-                  <p className="text-gray-600 text-sm mb-3 line-clamp-2">{event.description}</p>
+                  {/* <p className="text-gray-600 text-sm mb-3 line-clamp-2">{event.description}</p> */}
 
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
                     <div className="flex items-center gap-2 text-gray-600">
@@ -421,16 +427,16 @@ const EventsManagement: React.FC = () => {
                       <MapPin size={16} className="text-[#011c4f]" />
                       <span className="truncate">{event.location}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600">
+                    {/* <div className="flex items-center gap-2 text-gray-600">
                       <Users size={16} className="text-[#011c4f]" />
                       <span>
                         {event.registered}/{event.capacity}
                       </span>
-                    </div>
+                    </div> */}
                   </div>
 
                   {/* Capacity Bar */}
-                  <div className="mt-3">
+                  {/* <div className="mt-3">
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs text-gray-500">Capacity</span>
                       <span className="text-xs font-semibold text-gray-700">{Math.round((event.registered / event.capacity) * 100)}%</span>
@@ -443,7 +449,7 @@ const EventsManagement: React.FC = () => {
                         }}
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Actions */}

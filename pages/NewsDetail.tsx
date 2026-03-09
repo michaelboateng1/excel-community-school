@@ -88,7 +88,7 @@ const NewsDetail: React.FC = () => {
       </div>
 
       {/* Article Header */}
-      <header className="relative pt-32 pb-16 px-4">
+      <header className="relative pt-32 pb-16 px-4 lg:pt-32">
         <div className="max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">{article.title}</h1>

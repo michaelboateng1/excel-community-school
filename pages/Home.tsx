@@ -151,7 +151,7 @@ const Home: React.FC = () => {
       <FluidBackground />
 
       {/* HERO SECTION */}
-      <header className="relative h-[100svh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden px-4">
+      <header className="relative h-[100svh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden px-4 lg:pt-32">
         <motion.div style={{ y, opacity }} className="z-10 text-center flex flex-col items-center w-full max-w-6xl pb-24 md:pb-20">
           {/* Main Title */}
           <div className="relative w-full flex justify-center items-center">

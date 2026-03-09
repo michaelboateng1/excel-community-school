@@ -171,7 +171,7 @@ const App: React.FC = () => {
       </AnimatePresence> */}
 
       {/* HERO SECTION */}
-      <header className="relative h-[100svh] min-h-[700px] flex flex-col items-center justify-center overflow-hidden px-4">
+      <header className="relative h-[100svh] min-h-[700px] flex flex-col items-center justify-center overflow-hidden px-4 lg:pt-32">
         <motion.div style={{ y, opacity }} className="z-10 text-center flex flex-col items-center w-full max-w-6xl">
           {/* <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }} className="flex items-center gap-4 text-xs md:text-sm font-mono text-[#ccdcf9] tracking-[0.4em] uppercase mb-6 bg-white/5 px-6 py-2 rounded-full border border-white/10 backdrop-blur-md">
             <span>Est. 2025</span>

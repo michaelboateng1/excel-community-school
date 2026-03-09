@@ -73,7 +73,7 @@ const Admission: React.FC = () => {
       <BackgroundSlider />
 
       {/* HERO SECTION */}
-      <header className="relative h-[100svh] min-h-[700px] flex flex-col items-center justify-center overflow-hidden px-4">
+      <header className="relative h-[100svh] min-h-[700px] flex flex-col items-center justify-center overflow-hidden px-4 lg:pt-32">
         <motion.div style={{ y, opacity }} className="z-10 text-center flex flex-col items-center w-full max-w-6xl">
           <div className="relative w-full">
             <GradientText text="LATEST NEWS" as="h1" className="text-[11vw] md:text-[6vw] leading-[0.85] font-black tracking-tighter" />
